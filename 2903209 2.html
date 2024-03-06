@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
+    <title>Your Website Title</title>
+    <style>
+      /* Background animation keyframes */
+      @keyframes backgroundShift {
+      0% { background: #000000; }  /* Light pink */
+      50% { background: #000000; } /* Peach pink */
+      100% { background: #000000; } /* Light pink */
+      } 
+      /* Body styles */
+      body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      /*    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);*/
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: backgroundShift 10s ease infinite;
+      background-size: 400% 400%;
+      -webkit-animation: backgroundShift 10s ease infinite;
+      -moz-animation: backgroundShift 10s ease infinite;
+      -o-animation: backgroundShift 10s ease infinite;
+      }
+      /* Header styles */
+      .header h1 {
+      font-size: 5em;
+      color: #ffffff; /* Adjust color as needed */
+      font-weight: 900;
+      margin-bottom: 0.2em; /* Reduced margin-bottom */
+      line-height: 1; /* Adjust line-height as needed */
+      
+      }
+
+      
+
+      .subtitle {
+      font-size: 2em;
+      color: #a9a9cc; /* Adjust color as needed */
+      font-weight: 300;
+      margin-top: 0; /* Remove margin-top */
+      }
+      /* Navigation styles */
+      .navigation {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      }
+      .navigation a {
+      text-decoration: none;
+      color: #5e809d; /* Placeholder color */
+      font-size: 1.25em;
+      transition: color 0.3s ease;
+      }
+      .navigation a:hover {
+      color: #fda085;
+      }
+      /* Container styles */
+      .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      }
+      /* H2 styles */
+      h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ffffff; /* Adjust to match your desired text color */
+      }
+      /* Accordion styles */
+      .accordion {
+      position: relative;
+      background: #524763;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      padding: 15px;
+      cursor: pointer;
+      transition: background-color 0.6s ease;
+      color: #fff; 
+      }
+      .accordion:hover {
+      background: #6e5a8d;
+      }
+      /* Panel styles */
+      .panel {
+      position: relative;
+      background: #342b47;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease-out;
+      border-radius: 5px;
+      color: #fff; 
+      }
+      .panel p {
+      padding: 15px;
+      margin: 0;
+      border-top: 1px solid #524763;
+      }
+      /* Plus and minus toggle styles */
+      .plus::before {
+      content: "+"; /* Default content is plus */
+      float: right;
+      font-size: 1.5em;
+      line-height: 0.5em;
+      color: #fff; 
+      }
+      .accordion.active .plus::before {
+      content: "−"; /* When active, show minus */
+      }
+      /* Tags styles */
+      .tags {
+      display: flex;
+      gap: 10px;
+      margin: 8px; /* This adds space around the tags */
+      }
+      /* Add bottom margin when the panel is open */
+      .accordion.active + .panel {
+      margin-bottom: 20px; /* Adjust the space as needed */
+      }
+      /* Tag styles */
+      .tag {
+      background: #524763;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 0.9em;
+      color: #fff; 
+      }
+
+      
+      a .tag {
+      cursor: pointer; /* Only apply the pointer cursor when .tag is inside an <a> */
+      text-decoration: underline; /* Underline the text */
+      text-decoration-color: white; /* Set the underline color to white */
+      }
+      /* Reviews container styles */
+      .reviews-container {
+      max-width: 600px; /* Smaller width */
+      margin: auto;
+      text-align: center;
+      color: #ffffff; /* Adjust to match your desired text color */
+      }
+      /* Review box styles */
+      .review {
+      background-color: #a391a3; /* Adjust to match your desired background color */
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px; /* Space between reviews */
+      }
+      /* Review text styles */
+      .review p {
+      font-size: 0.9em; /* Smaller font size */
+      line-height: 1.6;
+      color: #ffffff; /* Adjust for better readability */
+      }
+      /* Reviewer name styles */
+      .reviewer {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #ffffff; /* Adjust for better readability */
+      }
+      /* Reviewer title styles */
+      .reviewer-title {
+      font-weight: 300;
+      font-size: 0.8em; /* Smaller font size */
+      color: #e0d0e0; /* Adjust for better readability */
+      }
+      /* Custom styles for your slider */
+      .swiper {
+      width: 690px;
+      height: 330px;
+      }
+      .swiper-slide {
+      background-color: #48435c; /* Adjust to match your desired background color */
+      border-radius: 10px;
+      margin-bottom: 20px; /* Space between reviews */
+      text-align: center;
+      font-size: 14px;
+      color: #ffffff; 
+      /* Center slide text vertically */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      }
+      .swiper-slide .testimonial {
+      margin: 20px;
+      }
+      .swiper-pagination-bullet-active {
+      background-color: #bfadc5;      
+      }
+      .footer {
+      background-color: rgb(56, 51, 63);
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: 1000; /* High z-index to keep footer above other content */
+      }
+      .footer a {
+      color: white;
+      margin: 0 10px;
+      font-size: 20px;
+      transition: color 0.3s;
+      }
+      .footer a:hover {
+      color: rgb(59, 58, 59);
+      }
+      #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0; 
+      }
+      
+
+
+      
+    </style>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <!-- Header -->
+    <header class="header">
+      <h1>Hi 👋</h1>
+      <p class="subtitle">I'm a engineer with 10 years of experience.</p>
+    </header>
+    <div class="container">
+      <h2>About me</h2>
+      
+      
+     
+      <div class="accordion">
+        Work Samples <span class="plus"></span>
+      </div>
+      <div class="panel">
+        <div class="tags">
+            <a href="https://github.com/FightPandemics/FightPandemics-iOS/pull/121/files">
+                <div class="tag">RGB UIColor initialization in Swift</div>
+            </a>
+            <a href="https://github.com/FightPandemics/FightPandemics-iOS/pull/105/files">
+                <div class="tag">SwiftFormat</div>
+            </a>
+            <a href="https://github.com/Satellite-im/Core-PWA/pull/5280/files">
+                <div class="tag">iOS App assets</div>
+            </a>
+            <a href="https://github.com/Satellite-im/Uplink-Mobile/pull/15/files">
+                <div class="tag">Flutter CI</div>
+            </a>   
+      </div>
+      <div class="tags">
+        <a href="https://github.com/Satellite-im/Core-PWA/pull/3390/files">
+            <div class="tag">Docker CI</div>
+        </a>
+        <a href="https://github.com/Satellite-im/Core-PWA/pull/312/files">
+            <div class="tag">Husky</div>
+        </a>
+        <a href="https://github.com/Satellite-im/Core-PWA/pull/5211/files">
+            <div class="tag">CI to generate .APK</div>
+        </a>
+        <a href="https://github.com/VTVL-co/qa-engineer-test/pull/1/files">
+            <div class="tag">MetaMask tests</div>
+        </a>
+        <a href="https://github.com/Satellite-im/Uplink-Deprecated/pull/309/files">
+            <div class="tag">CI .dmg macOS</div>
+        </a>
+     
+  </div>
+  <div class="tags">
+    <a href="https://github.com/Satellite-im/Core-PWA/pull/3463/files">
+        <div class="tag">Cypress scripts</div>
+    </a>
+    <a href="https://github.com/Satellite-im/Core-PWA/pull/2330/files">
+        <div class="tag">Cypress CI</div>
+    </a>
+    <a href="https://github.com/Satellite-im/Core-PWA/pull/282/files">
+        <div class="tag">Cypress tests</div>
+    </a>
+    <a href="https://github.com/Satellite-im/Core-PWA/pull/836/files">
+        <div class="tag">Cypress submodule</div>
+    </a>
+</div>
+<div class="tags">
+    <a href="https://github.com/jamf/PPPC-Utility/pull/64/files">
+            <div class="tag">Swiftlint build phase</div>
+        </a>
+        <a href="https://github.com/webrecorder/browsertrix-cloud/pull/614/files">
+            <div class="tag">Playwright</div>
+        </a>
+        <a href="https://github.com/Satellite-im/Uplink/pull/1733/files">
+            <div class="tag">Bash script</div>
+        </a>
+        <a href="https://github.com/Satellite-im/Uplink/pull/1777/files">
+            <div class="tag">Gum shell script</div>
+        </a>
+        <a href="https://github.com/Satellite-im/Uplink-Deprecated/pull/335/files">
+            <div class="tag">Linter CI</div>
+        </a>
+</div>
+ </div>
+
+ <div class="accordion">
+  Frameworks & Tooling <span class="plus"></span>
+</div>
+<div class="panel">
+  <div class="tags">
+    <div class="tag">Dioxus</div>
+    <div class="tag">Vue</div>
+    <div class="tag">ReactJS</div>
+    <div class="tag">Flutter</div>
+    <div class="tag">Node</div>
+    <div class="tag">Nuxt</div>
+    <div class="tag">Cordova</div>
+    <div class="tag">Jest</div>
+  </div>
+  <div class="tags">
+    <div class="tag">Cypress</div>
+    <div class="tag">Electron</div>
+    <div class="tag">AWS</div>
+    <div class="tag">GCP</div>
+    <div class="tag">Hyper-V</div>
+    <div class="tag">Azure</div>
+    <div class="tag">ESXi</div>
+    <div class="tag">XCUITest</div>
+  </div>
+  <div class="tags">
+      <div class="tag">Espresso</div>
+      <div class="tag">OpenLLaMA</div>
+      <div class="tag">Synpress</div>
+      <div class="tag">PaperTrail</div>
+
+    </div>
+</div>
+
+<div class="accordion">
+  Development <span class="plus"></span>
+</div>
+<div class="panel">
+  <div class="tags">
+    <div class="tag">iOS</div>
+    <div class="tag">Android</div>
+    <div class="tag">Web</div>
+    <div class="tag">Vue</div>
+    <div class="tag">HTML</div>
+    <div class="tag">CSS</div>
+    <div class="tag">JavaScript</div>
+    <div class="tag">TypeScript</div>
+  </div>
+  <div class="tags">
+      <div class="tag">Rust</div>
+      <div class="tag">Kotlin</div>
+     <div class="tag">Swift</div>
+     <div class="tag">SwiftUI</div>
+    </div>
+</div>
+ <div class="accordion">Startup Experience<span class="plus"></span>
+ </div>
+
+ 
+ <div class="panel">
+   <div class="tags">
+         <div class="tag">Sports</div>
+     <div class="tag">Consumer end apps</div>
+     <div class="tag">Digital archive</div>
+     <div class="tag">Analytics</div>
+     <div class="tag">Fintech</div>
+   </div>
+   <div class="tags">
+     <div class="tag">Web3</div>
+     <div class="tag">Edtech</div>
+     <div class="tag">B2B</div>
+     <div class="tag">Messaging apps</div>
+     <div class="tag">Retail</div>
+     <div class="tag">Property Management</div>
+   </div>
+   <div class="tags">
+       <div class="tag">Collaboration apps</div>
+       <div class="tag">CRM</div>
+       <div class="tag">Blockchain</div>
+       <div class="tag">IoT</div>
+     </div>
+ </div>
+    
+    
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+      
+      for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+      } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+      });
+      }
+    </script>
+    <!-- Swiper -->
+
+
+    <h2>Feedback</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "Sara is very smart, exceedingly hard working, and always looking for any way to help anyone on the team, even if it's outside of her normal duties. 
+            While her title is QA Manager, she continually adds value and helps with business, dev, community engagement, product management, and anywhere else that needs it. Sara is also adept at finding ways to automate and make use of new tech to streamline business and dev processes. I enjoy working with Sara immensely, and feel lucky I get to work with her."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "Sara is one of the most dedicated employees I have ever worked with. She works in the opposite time zone as me and yet she is always available. She knows every PR and what status it is in. She knows of every bug and has them all in the ticketing system already. She automates everything around her and maybe to a fault! She knows the tools well (Git, JIRA, etc.) and minimizes the impact to developers for even simple stuff like moving a ticket to "completed" after a PR is merged."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "I would highly recommend Sara as she would be a great addition anywhere she works. I was brand new into QA when I started working with Sara and she spent a countless amount of time with me teaching me everything I would need to know and more to make sure I was confident and well knowledge'd in my role.
+            She is very experienced and highly detailed in the work that she does and always up to date on everything to make sure nothing slips through the cracks. As a manager she always made sure we had everything we needed to succeed and clearly understood the goals that needed to be met. She would go above and beyond and be there day or night to help anyone out with any issues that were blocking them. Sara is an easy person to work with and I am very confident she will do great any place she works at."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "I would like to start the recommendation about Sara by saying how everyone likes her. An amazing manager for the QAs where everyone learns a lot from her. I add that in addition to the tests, she made many configurations and templates that helped us developers a lot. She is excellent at running tests and managing a team."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "I really enjoyed working with Sara at Satellite.IM. During her time as my QA manager for our team, she consistently went above and beyond in providing all the required resources and support to complete our tasks. Not only did Sara share her extensive knowledge and expertise on the technologies we were working with, but she also encouraged me to continue learning and challenging myself. Of course I have to mention that she was always willing to take on additional responsibilities, and her dedication and hard work were greatly appreciated by the entire team. Sara would become a true asset to any organization, and I highly recommend her. She will undoubtedly be an invaluable addition to any team and bring a wealth of knowledge, experience, and positive energy to the table."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "I highly recommend Sara as a QA engineer. She is incredibly thorough and skilled in the areas of test automation, cypress, and ci/cd. I have had the pleasure of working with Sara on our core product and have been consistently impressed by her attention to detail and ability to identify and address potential issues before they become problems. Sara has a great understanding of QA methodologies and is able to develop and implement effective test plans that ensure the quality of our products. She is also an expert in cypress and has used it to automate a significant portion of our QA processes, which has greatly improved the efficiency of our team. Additionally, Sara is knowledgeable about ci/cd and has helped us implement a seamless pipeline that allows us to quickly and confidently deploy new versions of our software. In summary, Sara is a valuable asset to any team and I highly recommend her for any QA engineering role. She is a skilled and dedicated professional who consistently delivers excellent results."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "Sara provided needed research for our team at Osmosis in identifying, setting up, and engaging engineers in creating E2E tests. She also covered numerous organizational gaps to make sure that we could always get what needed to be done done in a small and agile startup. She was a strong team player who proactively filled needs the team had."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "It is my true pleasure to recommend Sara. I had the good fortune of working with her at Osmosis. From day one of joining Osmosis, Sara was clearly someone who was in tune with every little need and detail, and she would frequently communicate across teams to collaborate in order to solve problems and ideate around solutions and best practices. She was always the “go to” every time there was a technical concern, and I was consistently impressed with her timely responses and genuine passion to help and offer solutions to her teammates and stakeholders anytime an issue arose. Above all else, Sara is pleasant, kind, and dedicated. Any team would be very lucky to work with her!"
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "Sara and I worked closely together in a fast paced environment, and it was absolutely delightful to work with her. Sara has impressive super-human skills to keep tabs with different contexts and discussions, which's something extremely useful, specially due to the nature of her work. She leverages the toolings available to multiply her productivity, which makes communication across different teams very smooth and fast, driving solutions to root cause of problems very efficiently. Sara cares deeply about the product, has a strong sense of ownership, and demonstrates pro-activeness even in areas that shouldn't be her direct responsibility, which shows how deeply she cares about the overall goal of the company, and doesn't stick to her specific duties only. On the technical end, Sara is one of the best QA engineers I've worked with, and unsurprisingly this opinion is shared amongst our all of our peers."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "One of our core values at Osmosis is "Have Each Other's Backs," meaning being reliable and supportive. Sara is the epitome of this value both for her teammates as well as for our learners. There have been a number of times I've noticed something that could be improved - from small things like a typo on a landing page to large things like a bug in the mobile app - and Sara either (a) already noticed it and initiated a fix, or (b) responded within minutes and then circled back to close the loop once it's fixed. On a few of these occasions I had actually forgotten about the quality improvement request but was pleasantly surprised when she pinged me saying it was fixed, which shows her strong attention to detail. Sara does not let things fall through the cracks. She's also a pleasure to work with and has mastered the ability to communicate kindly and joyfully in written form. Highly recommend working with her."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "Sara is a very very talented QA. She loves the job and the bugs hate her. Beyond QA, Sara was a trustworthy person who always knew how to take her responsibilities and always defend the interest of the company. Sara has always demonstrated great flexibility to learn new things in and outside of her specialization. I hope I can rely on his services again."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "We worked together on various projects and I was impressed by her way of doing a great job. Sara is able to work in a fast-paced environment and she is always capable of adapting to new working environments."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "Sara is a very detail-oriented tester with a knack for detecting edge case. She is also very capable in writing and executing test scenarios."
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "She is not only an ambitious and strong colleague but also an inspiring co-worker. As I remember, Sara was a very productive person. Forward thinking, proactive, independent and detail oriented professional - that's Sara! Although extremely technically minded Sara has the ability to communicate with simple, friendly language with a great sense of humor. When you get to connect with her, you'll discover an amazing person with unique skills!"
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial">
+            "Sara is a very talented QA that I had the pleasure to work with on several projects. Her attention to detail and focus make her an excellent and trustworthy professional. I would love to work with Sara again and I recommend her to the fullest."
+          </div>
+        </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper('.mySwiper', {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+    </script>
+    <script>
+      window.addEventListener('scroll', function() {
+        var swiperContainer = document.querySelector('.mySwiper');
+        var scrollPosition = window.scrollY;
+        var windowHeight = window.innerHeight;
+        var documentHeight = document.documentElement.scrollHeight;
+        var padding = 100; // Adjust the padding value as needed
+        
+        // Calculate the position of the swiper container
+        var swiperContainerRect = swiperContainer.getBoundingClientRect();
+        var swiperContainerBottom = swiperContainerRect.top + swiperContainerRect.height;
+      
+        // Check if the bottom of the swiper container is visible on the screen
+        if (swiperContainerBottom < windowHeight + scrollPosition) {
+          // Add padding to the bottom of the page
+          document.body.style.paddingBottom = padding + 'px';
+        } else {
+          // Remove padding if the bottom of the swiper container is not visible
+          document.body.style.paddingBottom = '0';
+        }
+      });
+    </script>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  particlesJS("particles-js", {
+      "particles": {
+          "number": {
+              "value": 80,
+              "density": {
+                  "enable": true,
+                  "value_area": 800
+              }
+          },
+          "color": {
+              "value": "#ffffff"
+          },
+          "shape": {
+              "type": "circle",
+              "stroke": {
+                  "width": 0,
+                  "color": "#000000"
+              },
+              "polygon": {
+                  "nb_sides": 5
+              },
+              "image": {
+                  "src": "img/github.svg",
+                  "width": 100,
+                  "height": 100
+              }
+          },
+          "opacity": {
+              "value": 0.5,
+              "random": false,
+              "anim": {
+                  "enable": false,
+                  "speed": 1,
+                  "opacity_min": 0.1,
+                  "sync": false
+              }
+          },
+          "size": {
+              "value": 5,
+              "random": true,
+              "anim": {
+                  "enable": false,
+                  "speed": 40,
+                  "size_min": 0.1,
+                  "sync": false
+              }
+          },
+          "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#ffffff",
+              "opacity": 0.4,
+              "width": 1
+          },
+          "move": {
+              "enable": true,
+              "speed": 6,
+              "direction": "none",
+              "random": false,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+              "attract": {
+                  "enable": false,
+                  "rotateX": 600,
+                  "rotateY": 1200
+              }
+          }
+      },
+      "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+              "onhover": {
+                  "enable": true,
+                  "mode": "repulse"
+              },
+              "onclick": {
+                  "enable": true,
+                  "mode": "push"
+              },
+              "resize": true
+          },
+          "modes": {
+              "grab": {
+                  "distance": 400,
+                  "line_linked": {
+                      "opacity": 1
+                  }
+              },
+              "bubble": {
+                  "distance": 400,
+                  "size": 40,
+                  "duration": 2,
+                  "opacity": 8,
+                  "speed": 3
+              },
+              "repulse": {
+                  "distance": 200,
+                  "duration": 0.4
+              },
+              "push": {
+                  "particles_nb": 4
+              },
+              "remove": {
+                  "particles_nb": 2
+              }
+          }
+      },
+      "retina_detect": true
+  });
+</script>
+    <!-- Your content here -->
+    <footer class="footer">
+      <a href="https://github.com/stavares843" target="_blank" title="GitHub">
+      <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/sara-t-3545a0126" target="_blank" title="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+      </a>
+    </footer>
+  </body>
+</html>
