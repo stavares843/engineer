@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
-    <title>Hi! 👋</title>
+    <title>Hello! 👋</title>
     <style>
       body {
         margin: 0;
@@ -25,6 +25,7 @@
         padding: 2rem;
         z-index: 1;
         position: relative;
+        pointer-events: none;
       }
 
       .header {
@@ -75,6 +76,7 @@
         backdrop-filter: blur(10px);
         border-radius: 12px;
         margin-bottom: 1rem;
+        pointer-events: auto;
         overflow: hidden;
         transition: all 0.3s ease;
         cursor: pointer;
@@ -90,7 +92,7 @@
         font-size: 1.2rem;
         color: #fff;
         background: #1E293B; /* Solid background color for the accordion header */
-        z-index: 10; /* Ensures it stays above other elements like the footer */
+        z-index: 1; /* Ensures it stays above other elements like the footer */
         position: relative; /* Keeps it properly stacked when scrolling */
       }
 
@@ -165,9 +167,13 @@
         bottom: 0;
         width: 100%;
         height: 30px;
-        z-index: 10;
+        z-index: 1;
         color: #fff;
       }
+
+      .container a, .footer a, .accordion-header a, .tags a,  .swiper-slide a {
+  pointer-events: auto;
+}
 
       .footer a {
         color: #fff;
@@ -192,12 +198,13 @@
       }
 
       #particles-js {
+        pointer-events: auto;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1;
+        z-index: 0;
       }
 
       /* Hyperlink Styling */
@@ -216,9 +223,9 @@
     <div id="particles-js"></div>
    
     <header class="header">
-      <h1>Hi <span>👋</span></h1>
+      <h1>Hello <span>👋</span></h1>
       <p class="subtitle">
-        Engineer with 10+ years of experience in startups, <br> 
+        I'm an engineer with 10+ years of experience in startups, <br> 
         specializing in delivering high-quality software.
       </p>
     </header>
@@ -429,16 +436,24 @@
 
       // Initialize Particles.js
       particlesJS("particles-js", {
-        particles: {
-          number: { value: 80 },
-          color: { value: "#ffffff" },
-          shape: { type: "circle" },
-          opacity: { value: 0.5 },
-          size: { value: 3 },
-          line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
-          move: { enable: true, speed: 3 }
-        }
-      });
+  particles: {
+    number: { value: 80 },
+    color: { value: "#ffffff" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
+    move: { enable: true, speed: 3 }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: { enable: true, mode: "repulse" },
+      onclick: { enable: true, mode: "push" }
+    }
+  }
+});
+
     </script>
   </body>
 </html>
